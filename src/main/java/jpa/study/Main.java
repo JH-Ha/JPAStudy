@@ -6,6 +6,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import jpa.study.model.Member;
+import jpa.study.model.Team;
 
 public class Main {
   public static void main(String[] args) {
@@ -19,7 +20,11 @@ public class Main {
       Member member = new Member();
       member.setName("test");
 
+      Team team = new Team();
+      member.setTeam(team);
+      em.persist(team);
       em.persist(member);
+
       tx.commit();
     } catch( Exception ex){
       tx.rollback();
