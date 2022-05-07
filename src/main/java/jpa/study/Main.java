@@ -21,10 +21,17 @@ public class Main {
       member.setName("test");
 
       Team team = new Team();
+      team.setName("teamName");
       member.setTeam(team);
       em.persist(team);
       em.persist(member);
 
+      em.flush();
+      em.clear();
+
+      Member m = em.find(Member.class, member.getId());
+      System.out.println("m = " + m.getTeam().getName());
+      System.out.println("t = ");
       tx.commit();
     } catch( Exception ex){
       tx.rollback();
